@@ -1,6 +1,7 @@
 use chrono::DateTime;
 use serde::{Deserialize, Serialize};
-use super::Xuid;
+
+type Xuid = String;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
