@@ -22,7 +22,6 @@ async fn get_authorization_header(
 
     let xuid = xsts_response.xuid().expect("This user's xuid is unknown.").to_string();
     let auth_header = xbox::get_xsts_auth_header(xsts_response);
-    println!("auth header: {:?}", &auth_header);
 
     (xuid, auth_header)
 }
@@ -39,6 +38,7 @@ pub async fn run(
     sent_requests: bool,
     recieved_requests: bool,
     xuids: Vec<String>,
+    played_title: Option<u32>,
     search: Option<String>,
     max_results: u32,
     detail: bool,
@@ -130,9 +130,20 @@ pub async fn run(
             println!("XUIDs: {:?}", result.await);
         }
     }
+    if let Some(title_id) = played_title {
+        let result = peoplehub::run(
+            client,
+            &authorization,
+            &user,
+            People::PlayedTitle(title_id),
+            &details,
+            &options
+        ).await;
+        println!("Played title {}: {:?}", title_id, result);
+    }
 
     if friends || followers || recent_players || recommendations || social
-        || sent_requests || recieved_requests || !xuids.is_empty() {
+        || sent_requests || recieved_requests || !xuids.is_empty() || played_title.is_some() {
         return ExitCode::SUCCESS;
     }
 

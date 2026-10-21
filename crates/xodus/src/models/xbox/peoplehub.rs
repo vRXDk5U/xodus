@@ -27,6 +27,7 @@ pub enum People<'a> {
     Batch(&'a Vec<Xuid>),
     FriendRequestsSent,
     FriendRequestsRecieved,
+    PlayedTitle(u32),
 }
 
 #[derive(Debug)]
@@ -35,6 +36,8 @@ pub enum DecorationType {
     PreferredColor,
     PresenceDetail,
     MultiplayerSummary,
+    // Causes 500 Internal Server Error unless people/playedTitle
+    TitleHistory, 
 }
 
 pub type Decoration = Vec<DecorationType>;

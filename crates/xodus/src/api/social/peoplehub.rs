@@ -34,6 +34,11 @@ pub async fn run (
         People::Batch(_) => url.add_assign("/people/batch"),
         People::FriendRequestsRecieved => url.add_assign("/people/friendrequests(recieved)"),
         People::FriendRequestsSent => url.add_assign("/people/friendrequests(sent)"),
+        People::PlayedTitle(title_id) => {
+            url.add_assign("/people/playedTitle(");
+            url.add_assign(&title_id.to_string());
+            url.push(')');
+        }
     }
     if !decoration.is_empty() {
         url.add_assign("/decoration/");
@@ -43,6 +48,7 @@ pub async fn run (
                 DecorationType::PreferredColor => "preferredColor,",
                 DecorationType::PresenceDetail => "presenceDetail,",
                 DecorationType::MultiplayerSummary => "multiplayerSummary,",
+                DecorationType::TitleHistory => "titleHistory,",
             });
         }
         url.pop();

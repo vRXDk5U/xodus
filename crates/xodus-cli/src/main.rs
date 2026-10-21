@@ -107,6 +107,8 @@ enum SubCommand {
         recieved_requests: bool,
         #[clap(short, long, help = "Additional xuids")]
         xuids: Vec<String>,
+        #[arg(short, long, help = "List friends who play a title")]
+        title: Option<u32>,
         /// Search
         #[arg(short, long, help = "Search for users")]
         search: Option<String>,
@@ -307,6 +309,7 @@ async fn main() -> ExitCode {
             sent_requests,
             recieved_requests,
             xuids,
+            title,
             search,
             max_results,
             detail,
@@ -326,6 +329,7 @@ async fn main() -> ExitCode {
             sent_requests,
             recieved_requests,
             xuids,
+            title,
             search,
             max_results,
             detail,
