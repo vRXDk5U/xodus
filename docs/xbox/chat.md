@@ -1,4 +1,4 @@
-
+# Chat
 ## xboxlive messaging
 See [xblmessaging](./xblmessaging.md).
 
@@ -21,10 +21,10 @@ The first message sent by the client is always:
 The the response provides the chat nonce and chat connection id to provide
 to `notificationinbox.xboxlive.com`.
 
-The following is sent after recieving a response from WhoAmI:
+The following is sent after recieving a response from WhoAmI:<br />
 ```{"clientSeqNum":1,"channel":{"type":"XboxMessage","id":"<xuid>"},"messageType":"JoinChannel"}```
 
-The following is sent before opening the party menu:
+The following is sent before opening the party menu:<br />
 ```{"clientSeqNum":2,"channel":{"type":"Party","id":"<xuid>"},"messageType":"JoinChannel"}```
 
 

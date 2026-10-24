@@ -1,17 +1,10 @@
+# Xbox Live Messaging
+### Authorization
 Only user token is required. Device and title claims are not needed.
 ```
 authorizationHeader="XBL3.0 x=${uhs};${xsts}"
 ```
-
-Read messages:
-```
-curl 'https://xblmessaging.xboxlive.com/network/xbox/users/me/inbox' \
-  -H 'Accept: application/json' \
-  -H 'Accept-Language: en-US,en;q=0.9' \
-  -H 'content-type: application/json' \
-  -H 'x-xbl-contract-version: 1' \
-  -H "authorization: ${authorizationHeader}" 
-```
+### One to one
 Read messages from a user:
 ```
 curl 'https://xblmessaging.xboxlive.com/network/xbox/users/me/conversations/users/xuid(${xuid})?maxItems=100' \
@@ -32,6 +25,16 @@ curl 'https://xblmessaging.xboxlive.com/network/xbox/users/me/conversations/user
   -H 'x-xbl-contract-version: 1' \
   -H "authorization: ${authorizationHeader}" \
   --data-raw '{"parts":[{"contentType":"text","version":0,"text":"<message contents>"}]}'
+```
+### All conversations
+Read messages:
+```
+curl 'https://xblmessaging.xboxlive.com/network/xbox/users/me/inbox' \
+  -H 'Accept: application/json' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'content-type: application/json' \
+  -H 'x-xbl-contract-version: 1' \
+  -H "authorization: ${authorizationHeader}" 
 ```
 Delete a message:
 ```
